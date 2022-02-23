@@ -15,6 +15,7 @@ import matplotlib.ticker as ticker
 from mpl_toolkits.axisartist.parasite_axes import SubplotHost
 from scipy.spatial.transform import Rotation
 import pandas as pd
+import scipy.cluster
 import scipy.optimize
 from collections import Counter
 import copy
@@ -23,7 +24,7 @@ os.chdir(os.path.dirname(__file__))
 
 class Parameter:
 
-    PATH = r'./TEMCA2/Skels connectome_mod'
+    PATH = r'./Skels connectome_mod' # Path to .swc files
     
     RUN = True
     SAVE = False
@@ -31,9 +32,9 @@ class Parameter:
     RN = '1'
     
     SEED = 1234
-    
-    outputdir = './output_TEMCA2/RN_' + str(RN)
 
+glo_info = pd.read_excel('./all_skeletons_type_list_180919.xls') # Path to glomerulus label information
+    
 fp = [f for f in os.listdir(Parameter.PATH) if os.path.isfile(os.path.join(Parameter.PATH, f))]
 fp = [os.path.join(Parameter.PATH, f) for f in fp]
 
@@ -255,10 +256,6 @@ for f in range(len(fp)):
     BranchData.LH_endP.append(LH_endP_temp)
     BranchData.AL_endP.append(AL_endP_temp)
     
-#%%
-
-glo_info = pd.read_excel(os.path.join(Parameter.PATH, '../all_skeletons_type_list_180919.xls'))
-
 glo_list = []
 glo_idx = []
 
@@ -437,8 +434,10 @@ AL_vol = hull_AL.volume
 AL_area = hull_AL.area
 AL_density_l = np.sum(LengthData.length_AL_total)/AL_vol
 
-#%%
+#%% Inter-PN distance calculation
 
+# The script can re-calculate the inter-PN distances but this can take long.
+# Change the LOAD flag to False do so.
 LOAD = True
 
 if LOAD:
@@ -571,7 +570,7 @@ print("LH noncluster Mean: " + str(np.mean(LHdist_noncluster_u_full_flat_new)) +
 print("AL cluster Mean: " + str(np.mean(ALdist_cluster_u_full_flat_new)) + ", STD: " + str(np.std(ALdist_cluster_u_full_flat_new)))
 print("AL noncluster Mean: " + str(np.mean(ALdist_noncluster_u_full_flat_new)) + ", STD: " + str(np.std(ALdist_noncluster_u_full_flat_new)))
 
-#%%
+#%% Bar graph of d_inter, d_intra, and lambda
 
 fig, ax = plt.subplots(figsize=(6,6))
 labels = ['AL', 'MB calyx', 'LH']
@@ -637,7 +636,7 @@ ax3.set_xlabel(r'Distance $(\mu m)$', fontsize=15)
 plt.tight_layout()
 plt.show()
 
-#%%
+#%% per glomerulus d_inter, d_intra, and lambda
 
 calyxtest_cl = []
 calyxtest_ncl = []
@@ -881,7 +880,7 @@ ax.set_xlabel(r'MB calyx, $\lambda_{X}$', fontsize=15)
 ax.set_ylabel(r'LH, $\lambda_{X}$', fontsize=15)
 plt.show()
 
-#%%
+#%% Clustering
 
 L_AL_new_ind = scipy.cluster.hierarchy.linkage(scipy.spatial.distance.squareform(morph_dist_AL_r_new), method='complete', optimal_ordering=True)
 L_calyx_new_ind = scipy.cluster.hierarchy.linkage(scipy.spatial.distance.squareform(morph_dist_calyx_r_new), method='complete', optimal_ordering=True)
@@ -1081,7 +1080,7 @@ cbar = plt.colorbar(im, fraction=0.045)
 cbar.ax.tick_params(labelsize=15)
 plt.show()
 
-#%%
+#%% Pearson's chisquare test
 
 def cramers_v(x, y):
     confusion_matrix = pd.crosstab(x,y)
@@ -1179,7 +1178,7 @@ print(cramers_v(grp2, ind_AL_dist))
 print(cramers_v(grp2, ind_calyx_dist))
 print(cramers_v(grp2, ind_LH_dist))
 
-#%%
+#%% Mutual information study
 
 mi_sample_AL_d = []
 
@@ -1271,9 +1270,12 @@ print(np.mean(mi_sample_AL_d), np.std(mi_sample_AL_d))
 print(np.mean(mi_sample_calyx_d), np.std(mi_sample_calyx_d))
 print(np.mean(mi_sample_LH_d), np.std(mi_sample_LH_d))
 
-#%% distance clustering LH
+#%% Visualization of LH clusters
 
+# Choose the cluster number
 c_n = 3
+
+# Choose the view, 't' = top, 'f' = front
 view = 't'
 
 cidx = np.where(ind_LH_dist == c_n)[0]
@@ -1332,9 +1334,12 @@ ax.set_zlim(100, 200)
 ax.dist = 7
 plt.show()
 
-#%% distance clustering calyx
+#%% Visualization of MB calyx clusters
 
+# Choose the cluster number
 c_n = 2
+
+# Choose the view, 't' = top, 'f' = front
 view = 't'
 
 cidx = np.where(ind_calyx_dist == c_n)[0]
@@ -1393,7 +1398,7 @@ ax.set_zlim(140, 220)
 ax.dist = 7
 plt.show()
 
-#%%
+#%% Cluster diagram
 
 odor = ['VM4', 'VM1', 'DL2d', 'DL2v', 'VL1', 'VL2a', 
         'DM5', 'DM6', 'VM7d', 'DM1', 'DM4', 'VA4', 'VC2',
