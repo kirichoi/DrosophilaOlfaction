@@ -1,17 +1,30 @@
 # DrosophilaOlfaction
 
-Python scripts for analyzing *Drosophila* olfactory projection neuron reconstructions and reproducing the figures.
-The original dataset is available from [Zheng et al. 2018](https://www.cell.com/cell/fulltext/S0092-8674(18)30787-6) and the [Github repo](https://github.com/bocklab/temca2data/tree/master/geometry_analysis/data).
-EM-reconstructed neuron skeleton data in .swc format and glomerulus labels will be needed to run the script.
+A repository containinng the complete set of data to reproduce the results presented in the manuscript titled `Olfactory responses of Drosophila are encoded in the organization of projection neurons'
 
-- drosophila_analysis.py: the Python script for the data analysis and figure reproduction
-- Skels connectome_mod: contains artifect-corrected version of *Drosophila* olfactory projection neuron reconstructions originally published by Zheng et al. 2018.
-- all_skeletons_type_list_180919.xls: contains glomerulus label information originally published by Zheng et al. 2018.
-- morph_dist_AL_r_new.npy: numpy array containing raw inter-PN distances in AL
-- morph_dist_calyx_r_new.npy: numpy array containing raw inter-PN distances in MB calyx
-- morph_dist_LH_r_new.npy: numpy array containing raw inter-PN distances in LH
+Copyright 2022 Kiri Choi
 
-There are few other necessary files to run the code that are not included in this repository that should be acquired separately.
+## Introduction
 
-- Morphological reconstruction files (.swc): All reconstructs are publically available from the above links. Use ALLEN_DB.py to query mouse V1 neurons.
-- For the mouse V1, the supplementary file `1-s2.0-S0960982220308587-mmc4.csv`, which contains the neuron IDs that Gouwens et al. have used, is necessary for the comparison between F(q)-based and morphometry-based clustering results. This file can be found [here](https://www.nature.com/articles/s41593-019-0417-0).
+The scripts utilize two datasets: the FAFB dataset by [Bates et al. 2020](https://www.sciencedirect.com/science/article/pii/S0960982220308587) and the hemibrain dataset by [Scheffer et al. 2020](https://elifesciences.org/articles/57443).
+A part of these datasets is reproduced in this repository. For the datasets, we would like to credit all the original authors.
+Below is a short description of what each file contains:
+
+- Drosophila_FAFB.py: the Python script for the data analysis and figure reproduction based on uPNs that innervate all three neuropils in the FAFB dataset
+- Drosophila_FAFB_other_uPN.py: the Python script for the data analysis and figure reproduction based on uPNs that does not innervate all three neuropils in the FAFB dataset
+- Drosophila_labeled_line.py: the Python script for the data analysis and figure reproduction of the labeled line study
+- Drosophila_neuprint.py: the Python script for the data analysis and figure reproduction based on uPNs that innervate all three neuropils in the hemibrain dataset
+- import_neuprint.py: the Python script for querying the neurons we used in the study from the neuPrint database
+- FAFB_summary.xlsx: a summary of the uPNs we used that are from the FAFB dataset
+- FAFB_summary.xlsx: a summary of the uPNs we used that are from the hemibrain dataset
+- FAFB
+    - FAFB_swc: contains the neuron reconstructions in .swc format
+    - morph_dist_(AL/MB/LH)_r_FAFB(.csv/.npy): precomputed distance matrics of uPNs innervating all three neuropils
+    - morph_dist_(AL/MB/LH)_r_FAFB_uPN(.csv/.npy): precomputed distance matrics of all uPNs innervating each neuropil
+    - NBLAST_(AL/MB/LH)_FAFB(.csv/.npy): precomputed NBLAST distance matrics of uPNs innervating all three neuropils
+- hemibrain
+    - neuprint_PN_invte_all: contains the neuron reconstructions in .swc format
+    - morph_dist_(AL/MB/LH)_r_neuprint(.csv/.npy): precomputed distance matrics of uPNs innervating all three neuropils
+    - neuprint_PNallinrvt_df.pkl: a pickled instance of Pandas DataFrame containing information about all queried neurons
+    - conn_(PNKC/PNLH)_df.pkl: a pickled instance of Pandas DataFrame containing connectivity information
+    - neuron_(PNKC/PNLH)_df.pkl: a pickled instance of Pandas DataFrame containing information about third-order neurons
