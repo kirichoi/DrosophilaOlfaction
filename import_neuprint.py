@@ -70,11 +70,20 @@ if QUERY:
     KCneuron_df, KCconn_df = fetch_adjacencies(PNallinrvt_df['bodyId'], KC_df['bodyId'], rois=['CA(R)'], min_roi_weight=3)
     LHneuron_df, LHconn_df = fetch_adjacencies(PNallinrvt_df['bodyId'], LH_df['bodyId'], rois=['LH(R)'], min_roi_weight=3)
     
+    KCneuron_df_8, KCconn_df_8 = fetch_adjacencies(PNallinrvt_df['bodyId'], KC_df['bodyId'], rois=['CA(R)'], min_roi_weight=8)
+    LHneuron_df_8, LHconn_df_8 = fetch_adjacencies(PNallinrvt_df['bodyId'], LH_df['bodyId'], rois=['LH(R)'], min_roi_weight=8)
+    
     KCneuron_df.to_pickle(r'./hemibrain/neuron_PNKC_df.pkl')
     KCconn_df.to_pickle(r'./hemibrain/conn_PNKC_df.pkl')
     
     LHneuron_df.to_pickle(r'./hemibrain/neuron_PNLH_df.pkl')
     LHconn_df.to_pickle(r'./hemibrain/conn_PNLH_df.pkl')
+    
+    KCneuron_df_8.to_pickle(r'./hemibrain/neuron_PNKC_df_8.pkl')
+    KCconn_df_8.to_pickle(r'./hemibrain/conn_PNKC_df_8.pkl')
+    
+    LHneuron_df_8.to_pickle(r'./hemibrain/neuron_PNLH_df_8.pkl')
+    LHconn_df_8.to_pickle(r'./hemibrain/conn_PNLH_df_8.pkl')
 
 #%% Query skeletal reconstructions
 

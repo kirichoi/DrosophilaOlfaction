@@ -809,7 +809,7 @@ attavlist1 = np.flip(attavlist1)
 attavlist2 = np.flip(attavlist2)
 attavlist3 = np.flip(attavlist3)
 
-#%% Figure S8 ABC
+#%% Figure 5A
 
 fig, ax = plt.subplots(figsize=(6,6))
 labels = ['AL', 'MB calyx', 'LH']
@@ -875,6 +875,7 @@ ax2.legend(lines + lines2, labels + labels2, loc=1, fontsize=15)
 plt.tight_layout()
 plt.show()
 
+#%% Figure 6B, Figure 5-Figure supplement 1
 
 fig, ax = plt.subplots(1, 3, figsize=(8,12))
 x = np.arange(len(MBtest_idx))
@@ -932,11 +933,48 @@ ax[2].set_ylim(x[0] - 1, x[-1] + 1)
 plt.tight_layout()
 plt.show()
 
+#%% Figure 7-Figure supplement 1
+
 n = np.nonzero(np.divide(LHtest_cl, LHtest_ncl)[type_idx])
 
 comb = pd.DataFrame({'AL': np.divide(ALtest_cl, ALtest_ncl)[type_idx][n], 
                      'MB': np.divide(MBtest_cl, MBtest_ncl)[type_idx][n], 
                      'LH': np.divide(LHtest_cl, LHtest_ncl)[type_idx][n]})
+
+fig, ax = plt.subplots(figsize=(4,4))
+for i in range(len(type_idx)):
+    if np.divide(LHtest_cl, LHtest_ncl)[type_idx[i]] != 0:
+        plt.scatter(np.divide(LHtest_cl, LHtest_ncl)[type_idx[i]],
+                    np.divide(ALtest_cl, ALtest_ncl)[type_idx[i]], 
+                    color=attavdict2[updatedxlabel[i]])
+
+coef = np.polyfit(comb['LH'], comb['AL'], 1)
+poly1d_fn = np.poly1d(coef)
+
+ax.set_xlim(0, 1.5)
+ax.set_ylim(0, 1.5)
+ax.set_xticks([0, 0.2, 0.4, 0.6, 0.8, 1.0, 1.2, 1.4])
+ax.set_xlabel(r'LH, $\lambda_{X}$', fontsize=15)
+ax.set_ylabel(r'AL, $\lambda_{X}$', fontsize=15)
+plt.show()
+
+
+fig, ax = plt.subplots(figsize=(4,4))
+for i in range(len(type_idx)):
+    if np.divide(MBtest_cl, MBtest_ncl)[type_idx[i]] != 0:
+        plt.scatter(np.divide(MBtest_cl, MBtest_ncl)[type_idx[i]],
+                    np.divide(ALtest_cl, ALtest_ncl)[type_idx[i]], 
+                    color=attavdict2[updatedxlabel[i]])
+
+coef = np.polyfit(comb['MB'], comb['AL'], 1)
+poly1d_fn = np.poly1d(coef)
+
+ax.set_xlim(0, 1.5)
+ax.set_ylim(0, 1.5)
+ax.set_xticks([0, 0.2, 0.4, 0.6, 0.8, 1.0, 1.2, 1.4])
+ax.set_xlabel(r'MB calyx, $\lambda_{X}$', fontsize=15)
+ax.set_ylabel(r'AL, $\lambda_{X}$', fontsize=15)
+plt.show()
 
 fig, ax = plt.subplots(figsize=(4,4))
 for i in range(len(type_idx)):
@@ -1359,7 +1397,7 @@ print(np.mean(mi_sample_MB_d), np.std(mi_sample_MB_d))
 print('Randomly sampled mean, std - Odor valence vs C^LH')
 print(np.mean(mi_sample_LH_d), np.std(mi_sample_LH_d))
 
-#%% Figure S8D
+#%% Figure 8-Figure supplement 1
 
 odor = ['VM4', 'VC5', 'DL2v', 'DL2d', 'VL1', 'VM1', 'VL2a', 'VM7d', 'DM5',
        'DM6', 'DM1', 'DM4', 'VA4', 'VC2', 'VA3', 'VM5d', 'VM5v', 'DL1',

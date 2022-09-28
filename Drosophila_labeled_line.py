@@ -227,7 +227,7 @@ for i in range(len(gsum_LH)):
     glabeled_glo_LH.append(np.unique(full))
     glabeled_glo_info_LH.append([len(glabeled_glo_LH_temp), Counter(full)])
 
-#%% Figure S6
+#%% Figure 9-Figure supplement 1
 
 fig = plt.figure(figsize=(np.shape(gsum_KC_binary)[1]*0.01,8))
 ax1 = SubplotHost(fig, 111)
@@ -493,7 +493,7 @@ cbar = plt.colorbar(im, fraction=0.045)
 cbar.ax.tick_params(labelsize=15)
 plt.show()
 
-#%% Figure S7
+#%% Figure 11-Figure supplement 1
 
 fig, ax = plt.subplots(figsize=(12,3))
 x = np.arange(len(glo_list_new))

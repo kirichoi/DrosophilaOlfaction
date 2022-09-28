@@ -937,7 +937,7 @@ ax2.legend(lines + lines2, labels + labels2, loc=1, fontsize=15)
 plt.tight_layout()
 plt.show()
 
-#%% Figure 6A, S4
+#%% Figure 6A, Figure 5-Figure supplement 1
 
 updatedxlabel = np.array(glo_list_new)[type_idx]
 
@@ -1014,7 +1014,7 @@ ax[2].set_ylim(x[0] - 1, x[-1] + 1)
 plt.tight_layout()
 plt.show()
 
-#%% Figure 6B
+#%% Figure 6C
 
 clump_noclump = ['DL3', 'DL5']
 
@@ -1121,7 +1121,7 @@ ax.set_xlabel(r'MB calyx, $\lambda_{X}$', fontsize=15)
 ax.set_ylabel(r'LH, $\lambda_{X}$', fontsize=15)
 plt.show()
 
-#%% Spatial proximity-based clustering, Figure S3
+#%% Spatial proximity-based clustering, Figure 2-Figure supplement 3
 
 L_AL_new_ind = scipy.cluster.hierarchy.linkage(scipy.spatial.distance.squareform(morph_dist_AL_r_new), method='complete', optimal_ordering=True)
 L_MB_new_ind = scipy.cluster.hierarchy.linkage(scipy.spatial.distance.squareform(morph_dist_MB_r_new), method='complete', optimal_ordering=True)
@@ -1230,7 +1230,7 @@ ind_LH_dist[np.where(ind_LH_dist == '9')] = 9
 ind_LH_dist[np.where(ind_LH_dist == '10')] = 10
 ind_LH_dist[np.where(ind_LH_dist == '11')] = 11
 
-#%% Figure S2
+#%% Figure 2-Figure supplement 2
 
 rnew = []
 rnew.append(R_MB_new['leaves'][0:35])
@@ -1646,7 +1646,7 @@ print(np.mean(mi_sample_LH_d), np.std(mi_sample_LH_d))
 # Choose the cluster number
 c_n = 1
 
-# Choose the view, 't' = top, 'f' = front
+# Choose the view, 't' = dorsal view, 'f' = anterior view
 view = 't'
 
 cidx = np.where(ind_MB_dist == c_n)[0]
@@ -1657,7 +1657,7 @@ fig = plt.figure(figsize=(8, 8))
 ax = plt.axes(projection='3d')
 ax.set_box_aspect((1,1,1))
 
-if view == 'f':
+if view == 't':
     vertcoor = np.array([[402.223, 128.641, 184.04 ],
                        [403.118, 125.871, 186.4  ],
                        [411.06 , 115.141, 180.88 ],
@@ -1729,7 +1729,7 @@ for i in glo_idx_flat:
         n += 1
 ax.axis('off')
 
-if view == 'f':
+if view == 't':
     ax.view_init(elev=90., azim=-90)
 else:
     ax.view_init(elev=0., azim=-90)
@@ -1745,7 +1745,7 @@ plt.show()
 # Choose the cluster number
 c_n = 1
 
-# Choose the view, 't' = top, 'f' = front
+# Choose the view, 't' = dorsal view, 'f' = anterior view
 view = 't'
 
 cidx = np.where(ind_LH_dist == c_n)[0]
@@ -1756,7 +1756,7 @@ fig = plt.figure(figsize=(8, 8))
 ax = plt.axes(projection='3d')
 ax.set_box_aspect((1,1,1))
 
-if view == 'f':
+if view == 't':
     vertcoor = np.array([[410.145, 136.235, 178.44 ],
                        [405.098, 155.704, 160.24 ],
                        [389.172, 165.974, 150.8  ],
@@ -1843,7 +1843,7 @@ for i in glo_idx_flat:
         n += 1
 ax.axis('off')
 
-if view == 'f':
+if view == 't':
     ax.view_init(elev=90., azim=-90)
 else:
     ax.view_init(elev=0., azim=-90)
@@ -2000,7 +2000,7 @@ for i in range(len(glo_list_cluster)):
 plt.show()
 
 
-#%% Figure S1B
+#%% Figure 2-Figure supplement 1B
 
 import navis
 

@@ -7,16 +7,18 @@ Copyright 2022 Kiri Choi
 ## Description
 
 The scripts utilize two datasets: the FAFB dataset by [Bates et al. 2020](https://www.sciencedirect.com/science/article/pii/S0960982220308587) and the hemibrain dataset by [Scheffer et al. 2020](https://elifesciences.org/articles/57443).
-A part of these datasets is reproduced in this repository. For the datasets, we would like to credit all the original authors.
+A part of these datasets is reproduced in the repository (https://github.com/kirichoi/DrosophilaOlfaction), which are necessary to run these scripts. 
+For the datasets, we would like to credit all the original authors.
 Below is a short description of what each file contains:
 
 - *Drosophila_FAFB.py*: the Python script for the data analysis based on uPNs that innervate all three neuropils in the FAFB dataset
 - *Drosophila_FAFB_other_uPN.py*: the Python script for the data analysis based on uPNs that do not innervate all three neuropils in the FAFB dataset
 - *Drosophila_labeled_line.py*: the Python script for the labeled line study
+- *Drosophila_labeled_line_high_thres.py*: the Python script for the labeled line study using higher synaptic weight threshold
 - *Drosophila_neuprint.py*: the Python script for the data analysis based on uPNs that innervate all three neuropils in the hemibrain dataset
 - *import_neuprint.py*: the Python script querying the neurons used in the study from the neuPrint database
 - *FAFB_summary.xlsx*: a summary of the FAFB dataset analysis result
-- *FAFB_summary.xlsx*: a summary of the hemibrain dataset analysis result
+- *hemibrain_summary.xlsx*: a summary of the hemibrain dataset analysis result
 - *FAFB*
     - *FAFB_swc*: contains the neuron reconstructions in .swc format from the FAFB dataset
     - *morph_dist_(AL/MB/LH)_r_FAFB(.csv/.npy)*: precomputed distance matrics of uPNs innervating all three neuropils
@@ -28,3 +30,6 @@ Below is a short description of what each file contains:
     - *neuprint_PNallinrvt_df.pkl*: a pickled instance of Pandas DataFrame containing information about all queried neurons
     - *conn_(PNKC/PNLH)_df.pkl*: a pickled instance of Pandas DataFrame containing the connectivity information
     - *neuron_(PNKC/PNLH)_df.pkl*: a pickled instance of Pandas DataFrame containing the information about third-order neurons
+    - *conn_(PNKC/PNLH)_df_8.pkl*: a pickled instance of Pandas DataFrame containing the connectivity information when using higher synaptic weight threshold
+    - *neuron_(PNKC/PNLH)_df_8.pkl*: a pickled instance of Pandas DataFrame containing the information about third-order neurons when using higher synaptic weight threshold
+   

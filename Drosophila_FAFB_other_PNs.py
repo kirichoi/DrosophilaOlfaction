@@ -789,7 +789,7 @@ trans_LH = trans[glo_idx_flat_LH]
 
 trans_dict = {'ACh': '#2ca02c', 'GABA': '#d62728', 'Octopamine': '#ff7f0e', 'unknown': '#858585'}
 
-#%% Figure S10
+#%% Figure 5-Figure supplement 2
 
 AL_innerv_idx = list(set(glo_idx_flat_AL) - set(all_innerv_idx))
 MB_innerv_idx = list(set(glo_idx_flat_MB) - set(all_innerv_idx))
@@ -1090,12 +1090,12 @@ print('Monte Carlo chi-square value: Odor valence vs C^LH (mean, std)')
 print(np.mean(p9), np.std(p9))
 
 
-#%% Visualization of LH clusters - Figure S9
+#%% Visualization of LH clusters - Figure 4-Figure supplement 1
 
 # Choose the cluster number
 c_n = 1
 
-# Choose the view, 't' = top, 'f' = front
+# Choose the view, 't' = dorsal view, 'f' = anterior view
 view = 't'
 
 cidx = np.where(ind_LH_dist == c_n)[0]
@@ -1106,7 +1106,7 @@ fig = plt.figure(figsize=(8, 8))
 ax = plt.axes(projection='3d')
 ax.set_box_aspect((1,1,1))
 
-if view == 'f':
+if view == 't':
     vertcoor = np.array([[410.145, 136.235, 178.44 ],
                        [405.098, 155.704, 160.24 ],
                        [389.172, 165.974, 150.8  ],
@@ -1193,7 +1193,7 @@ for i in glo_idx_flat:
         n += 1
 ax.axis('off')
 
-if view == 'f':
+if view == 't':
     ax.view_init(elev=90., azim=-90)
 else:
     ax.view_init(elev=0., azim=-90)
@@ -1205,12 +1205,12 @@ ax.dist = 7
 plt.show()
 
 
-#%% Visualization of LH clusters comparing homotypes with and without 27 uPNs - Figure S11
+#%% Visualization of LH clusters comparing homotypes with and without 27 uPNs - Figure 4-Figure supplement 2
 
 # choose the homotype
 g = 'DA1'
 
-# Choose the view, 't' = top, 'f' = front
+# Choose the view, 't' = dorsal view, 'f' = anterior view
 view = 't'
 
 try:
@@ -1228,7 +1228,7 @@ fig = plt.figure(figsize=(8, 8))
 ax = plt.axes(projection='3d')
 ax.set_box_aspect((1,1,1))
 
-if view == 'f':
+if view == 't':
     vertcoor = np.array([[410.145, 136.235, 178.44 ],
                        [405.098, 155.704, 160.24 ],
                        [389.172, 165.974, 150.8  ],
@@ -1326,7 +1326,7 @@ for i in idx_cluster:
                           color=color, lw=1.)
 ax.axis('off')
 
-if view == 'f':
+if view == 't':
     ax.view_init(elev=90., azim=-90)
 else:
     ax.view_init(elev=0., azim=-90)
