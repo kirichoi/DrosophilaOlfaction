@@ -1,6 +1,6 @@
 # DrosophilaOlfaction
 
-A repository containinng the complete set of data to reproduce the results presented in the manuscript titled **_Olfactory responses of Drosophila are encoded in the organization of projection neurons_**
+A repository containinng the complete set of data to reproduce the results presented in the manuscript titled [**_Olfactory responses of Drosophila are encoded in the organization of projection neurons_**](https://elifesciences.org/articles/77748)
 
 Copyright 2022 Kiri Choi
 
